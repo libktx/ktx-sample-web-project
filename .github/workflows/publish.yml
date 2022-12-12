@@ -1,0 +1,34 @@
+name: publish
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v3
+      - name: JDK setup
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: temurin
+      - name: Gradle setup
+        uses: gradle/gradle-build-action@v2
+      - name: Generate WebGL application
+        run: ./gradlew teavm:build
+      - name: Prepare project for release
+        shell: bash
+        run: |
+          touch teavm/build/dist/webapp/.nojekyll
+          sed -i 's/<div>/<div style="display:flex;justify-content:center;align-items:center;height:100vh">/g' teavm/build/dist/webapp/index.html 
+      - name: Publish sample
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.sampleAccessToken }}
+          branch: gh-pages
+          folder: teavm/build/dist/webapp/
+          repository-name: libktx/ktx-sample-web-project
