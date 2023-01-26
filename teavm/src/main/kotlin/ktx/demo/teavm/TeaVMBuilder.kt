@@ -9,21 +9,21 @@ import com.github.xpenatan.gdx.backends.web.gen.SkipClass
 /** Builds the TeaVM/HTML application. */
 @SkipClass
 object TeaVMBuilder {
-  @JvmStatic fun main(arguments: Array<String>) {
-    val teaBuildConfiguration = TeaBuildConfiguration().apply {
-      assetsPath.add(File("../assets"))
-      webappPath = File("build/dist").canonicalPath
-      // You can switch this setting during development:
-      obfuscate = true
-      // Register any extra classpath assets here:
-      // additionalAssetsClasspathFiles += "ktx/demo/asset.extension"
+    @JvmStatic fun main(arguments: Array<String>) {
+        val teaBuildConfiguration = TeaBuildConfiguration().apply {
+            assetsPath.add(File("../assets"))
+            webappPath = File("build/dist").canonicalPath
+            // You can switch this setting during development:
+            obfuscate = true
+            // Register any extra classpath assets here:
+            // additionalAssetsClasspathFiles += "ktx/demo/asset.extension"
+        }
+
+        // Register any classes or packages that require reflection here:
+        // TeaReflectionSupplier.addReflectionClass("ktx.demo.reflect")
+
+        val tool = TeaBuilder.config(teaBuildConfiguration)
+        tool.mainClass = "ktx.demo.teavm.TeaVMLauncher"
+        TeaBuilder.build(tool)
     }
-
-    // Register any classes or packages that require reflection here:
-    // TeaReflectionSupplier.addReflectionClass("ktx.demo.reflect")
-
-    val tool = TeaBuilder.config(teaBuildConfiguration)
-    tool.mainClass = "ktx.demo.teavm.TeaVMLauncher"
-    TeaBuilder.build(tool)
-  }
 }
