@@ -24,14 +24,17 @@ allprojects {
 configure(subprojects - project(':android')) {
   apply plugin: 'java-library'
   apply plugin: 'kotlin'
-  sourceCompatibility = 1.8
+  sourceCompatibility = 11
   compileJava {
     options.incremental = true
+  }
+  compileKotlin {
+    compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
   }
 }
 
 subprojects {
-  version = '1.11.0.7-SNAPSHOT'
+  version = '1.11.0.8-SNAPSHOT'
   ext.appName = 'ktx-demo-web'
   repositories {
     mavenCentral()

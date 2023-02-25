@@ -3,7 +3,7 @@
 package ktx.demo.teavm
 
 import com.github.xpenatan.gdx.backends.teavm.TeaApplicationConfiguration
-import com.github.xpenatan.gdx.backends.web.WebApplication
+import com.github.xpenatan.gdx.backends.teavm.TeaApplication
 import ktx.demo.Main
 
 /** Launches the TeaVM/HTML application. */
@@ -12,5 +12,5 @@ fun main() {
         width = 640
         height = 480
     }
-    WebApplication(Main(), config)
+    TeaApplication(Main(), config)
 }
