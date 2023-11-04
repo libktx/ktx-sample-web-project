@@ -13,9 +13,9 @@ project.ext.mainClassName = 'ktx.demo.teavm.TeaVMBuilder'
 eclipse.project.name = appName + '-teavm'
 
 // This must be at least 11, and no higher than the JDK version this project is built with.
-targetCompatibility = 11
+java.targetCompatibility = 11
 // This should probably be equal to targetCompatibility, above. This only affects the TeaVM module.
-sourceCompatibility = 11
+java.sourceCompatibility = 11
 
 
 dependencies {
@@ -27,13 +27,15 @@ dependencies {
 
 }
 
-task buildJavaScript(dependsOn: classes, type: JavaExec) {
+tasks.register('buildJavaScript', JavaExec) {
+  dependsOn classes
   setDescription("Transpile bytecode to JavaScript via TeaVM")
   mainClass.set(project.mainClassName)
   setClasspath(sourceSets.main.runtimeClasspath)
 }
 build.dependsOn buildJavaScript
 
-task run(dependsOn: [buildJavaScript, ":teavm:jettyRun"]) {
-  setDescription("Run the JavaScript application hosted via a local Jetty server at http://localhost:8080/")
+tasks.register("run") {
+  description = "Run the JavaScript application hosted via a local Jetty server at http://localhost:8080/"
+  dependsOn(buildJavaScript, tasks.named("jettyRun"))
 }

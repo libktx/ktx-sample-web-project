@@ -29,7 +29,7 @@ Useful Gradle tasks and flags:
 - `clean`: removes `build` folders, which store compiled classes and built archives.
 - `eclipse`: generates Eclipse project data.
 - `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
+- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/lib`.
 - `lwjgl3:run`: starts the application.
 - `teavm:build`: builds the JavaScript application into the build/dist/webapp folder.
 - `teavm:run`: serves the JavaScript application at http://localhost:8080 via a local Jetty server.
