@@ -13,16 +13,22 @@ project.ext.mainClassName = 'ktx.demo.teavm.TeaVMBuilder'
 eclipse.project.name = appName + '-teavm'
 
 // This must be at least 11, and no higher than the JDK version this project is built with.
-java.targetCompatibility = 11
+java.targetCompatibility = "11"
 // This should probably be equal to targetCompatibility, above. This only affects the TeaVM module.
-java.sourceCompatibility = 11
+java.sourceCompatibility = "11"
 
 
 dependencies {
   implementation "com.badlogicgames.gdx:gdx-box2d-gwt:$gdxVersion"
   implementation "com.github.xpenatan.gdx-teavm:backend-teavm:$gdxTeaVMVersion"
-  implementation "com.github.xpenatan.gdx-teavm:gdx-bullet-teavm:$gdxTeaVMVersion"
+  implementation "com.github.xpenatan.gdx-teavm:gdx-bullet-teavm:1.0.0-b6"
   implementation "com.github.xpenatan.gdx-teavm:gdx-freetype-teavm:$gdxTeaVMVersion"
+  implementation "org.teavm:teavm-classlib:$teaVMVersion"
+  implementation "org.teavm:teavm-core:$teaVMVersion"
+  implementation "org.teavm:teavm-jso-apis:$teaVMVersion"
+  implementation "org.teavm:teavm-jso-impl:$teaVMVersion"
+  implementation "org.teavm:teavm-jso:$teaVMVersion"
+  implementation "org.teavm:teavm-tooling:$teaVMVersion"
   implementation project(':core')
 
 }
