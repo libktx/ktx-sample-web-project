@@ -3,15 +3,22 @@ package ktx.demo
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.Texture.TextureFilter.Linear
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import kotlinx.coroutines.launch
 import ktx.app.KtxGame
 import ktx.app.KtxScreen
 import ktx.app.clearScreen
 import ktx.assets.disposeSafely
 import ktx.assets.toInternalFile
+import ktx.async.KtxAsync
 import ktx.graphics.use
 
 class Main : KtxGame<KtxScreen>() {
     override fun create() {
+        KtxAsync.initiate()
+        KtxAsync.launch {
+            println("Coroutine says hi! ${Thread.currentThread()}")
+        }
+
         addScreen(FirstScreen())
         setScreen<FirstScreen>()
     }
