@@ -33,4 +33,8 @@ dependencies {
   api "io.github.libktx:ktx-vis-style:$ktxVersion"
   api "io.github.libktx:ktx-vis:$ktxVersion"
   api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+  if(enableGraalNative == 'true') {
+    implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
+  }
 }
